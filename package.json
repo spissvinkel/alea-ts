@@ -1,0 +1,26 @@
+{
+    "name": "@spissvinkel/alea",
+    "version": "1.0",
+    "description": "Seedable PRNG for JS/TS",
+    "keywords": [
+        "prng",
+        "pseudo",
+        "random",
+        "number",
+        "generator",
+        "alea",
+        "typescript"
+    ],
+    "author": "Simen Storsveen <code@simenstorsveen.no>",
+    "license": "MIT",
+    "repository": "github:spissvinkel/alea-ts",
+    "homepage": "https://github.com/spissvinkel/alea-ts",
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "*.map"
+    ],
+    "devDependencies": {
+        "typescript": "^4.0.3"
+    }
+}

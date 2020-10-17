@@ -1,0 +1,12 @@
+.vscode
+
+/build
+
+/*.d.ts
+/*.js
+/*.map
+
+publish-*.sh
+
+/node_modules
+/package-lock.json
