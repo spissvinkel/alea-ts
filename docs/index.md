@@ -6,9 +6,6 @@ This project is a fork of [https://github.com/coverslide/node-alea](https://gith
 
 See also [https://github.com/nquinlan/better-random-numbers-for-javascript-mirror](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror) for more background information.
 
-
-## Documentation
-
 [TSDoc API reference](https://spissvinkel.github.io/alea-ts/api/)
 
 

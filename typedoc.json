@@ -1,0 +1,8 @@
+{
+  "mode": "file",
+  "readme": "none",
+  "out": "./docs/api",
+  "name": "@spissvinkel/alea",
+  "includeVersion": true,
+  "stripInternal": true
+}
