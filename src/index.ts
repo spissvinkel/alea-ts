@@ -107,52 +107,76 @@ export const nextT = <T> (f: (n: number) => T) => (state: AleaState): T => f(ran
  * @param seed a seed value
  * @returns a new state object based on the provided `seed`
  */
-export const mkState = (seed: string): AleaState => {
+export const mkState = (seed: string): AleaState => initState(seed, emptyState());
 
-    let mash = mkMash();
+/**
+ * Initializes a recycled PRNG state object using the provided seed value
+ *
+ * @param seed a seed value
+ * @param state a state object to initialize
+ * @returns the provided `state` object initialized using the provided `seed`
+ */
+export const initState = (seed: string, state: AleaState): AleaState => {
 
-    let s0 = mash(' ');
-    let s1 = mash(' ');
-    let s2 = mash(' ');
+    let n = INITIAL_MASH_N;
+
+    let s0 = mashResult(n = mash(' ', n));
+    let s1 = mashResult(n = mash(' ', n));
+    let s2 = mashResult(n = mash(' ', n));
 
     let c = 1;
 
-    s0 -= mash(seed);
+    s0 -= mashResult(n = mash(seed, n));
     if (s0 < 0) s0 += 1;
 
-    s1 -= mash(seed);
+    s1 -= mashResult(n = mash(seed, n));
     if (s1 < 0) s1 += 1;
 
-    s2 -= mash(seed);
+    s2 -= mashResult(n = mash(seed, n));
     if (s2 < 0) s2 += 1;
 
+    state.s0 = s0;
+    state.s1 = s1;
+    state.s2 = s2;
+    state.c = c;
+
+    return state;
+};
+
+/**
+ * Creates an uninitialized PRNG state object.
+ * Must be initialized with [[`initState`]] before use
+ *
+ * @returns a new, uninitialized state object
+ */
+export const emptyState = (): AleaState => {
+    const s0 = 0;
+    const s1 = 0;
+    const s2 = 0;
+    const c = 0;
     return { s0, s1, s2, c };
 };
 
 /** @internal */
-const mkMash: () => (data: string) => number = () => {
+const INITIAL_MASH_N = 0xefc8249d;
 
-    let n = 0xefc8249d;
-
-    return data => {
-
-        for (let i = 0; i < data.length; i++) {
-
-            n += data.charCodeAt(i);
-
-            let h = 0.02519603282416938 * n;
-
-            n = h >>> 0;
-            h -= n;
-            h *= n;
-            n = h >>> 0;
-            h -= n;
-            n += h * 0x100000000; // 2^32
-        }
-
-        return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
-    };
+/** @internal */
+const mash = (data: string, n: number): number => {
+    for (let i = 0; i < data.length; i++) {
+        n += data.charCodeAt(i);
+        let h = 0.02519603282416938 * n;
+        n = h >>> 0;
+        h -= n;
+        h *= n;
+        n = h >>> 0;
+        h -= n;
+        n += h * 0x100000000; // 2^32
+    }
+    return n;
 };
+
+/** @internal */
+const mashResult = (n: number): number => (n >>> 0) * 2.3283064365386963e-10; // 2^-32
 
 /** @internal */
 const defaultSeed = (): string => `${Date.now()}`;

@@ -121,7 +121,7 @@ const secondColour = nextColour(); // Maybe 'red', or 'green' again
 If you need more fine grained control over your random sequences there are also some low-level functions available
 
 ```javascript
-import { AleaState, mkState, nextT, random } from '@spissvinkel/alea';
+import { AleaState, initState, mkState, nextT, random } from '@spissvinkel/alea';
 
 const FOO_SEED = '12345';
 const BAR_SEED = '67890';
@@ -139,4 +139,10 @@ const nextBool: (state: AleaState) => boolean = nextT(n => n < 0.5);
 
 const myFourthFooValueIsABoolean = nextBool(fooState);
 const myThirdBarValueIsAlsoABoolean = nextBool(barState);
+
+// Reset state
+initState(FOO_SEED, fooState);
+
+const myFirstFooValueAgain = random(fooState); // Same as `myFirstFooValue`
+const mySecondFooValueAgain = random(fooState); // Same as `mySecondFooValue`
 ```
