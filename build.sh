@@ -2,4 +2,4 @@
 
 rm -rf ./*.d.ts ./*.js ./*.map ./build/*
 
-tsc
+npx tsc

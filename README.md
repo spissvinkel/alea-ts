@@ -2,10 +2,6 @@
 
 A seedable pseudo-random number generator based on Johannes Baagøes' Alea, written in Typescript.
 
-This project is a fork of [https://github.com/coverslide/node-alea](https://github.com/coverslide/node-alea) modified for easier integration into other Typescript projects.
-
-See also [https://github.com/nquinlan/better-random-numbers-for-javascript-mirror](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror) for more background information.
-
 
 ## API Documentation
 
@@ -146,3 +142,10 @@ initState(FOO_SEED, fooState);
 const myFirstFooValueAgain = random(fooState); // Same as `myFirstFooValue`
 const mySecondFooValueAgain = random(fooState); // Same as `mySecondFooValue`
 ```
+
+
+### Background
+
+This project originally started as a fork of [https://github.com/coverslide/node-alea](https://github.com/coverslide/node-alea).
+
+See also [https://github.com/nquinlan/better-random-numbers-for-javascript-mirror](https://github.com/nquinlan/better-random-numbers-for-javascript-mirror) for more background information.
