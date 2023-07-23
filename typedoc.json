@@ -1,7 +1,10 @@
 {
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPointStrategy": "expand",
   "out": "./docs/api",
   "name": "@spissvinkel/alea",
   "includeVersion": true,
   "readme": "none",
-  "excludeInternal": true
+  "excludeInternal": true,
+  "sort": [ "source-order" ]
 }
